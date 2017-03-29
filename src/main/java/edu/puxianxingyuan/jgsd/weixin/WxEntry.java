@@ -13,7 +13,7 @@ import edu.puxianxingyuan.jgsd.weixin.tools.WxAdvancedUtil;
 @Scope("prototype")
 public class WxEntry {
 
-	@RequestMapping({ "/wx.htm" })
+	@RequestMapping({ "/wx" })
 	void getUserInfo(HttpServletRequest req, HttpServletResponse res) {
 		try {
 //			System.out.println("getUserInfo is invoked!");

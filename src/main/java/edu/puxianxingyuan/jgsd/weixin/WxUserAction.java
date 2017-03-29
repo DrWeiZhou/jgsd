@@ -15,7 +15,7 @@ import edu.puxianxingyuan.jgsd.weixin.tools.bean.WxOauth2Token;
 @Controller
 public class WxUserAction {
 
-	@RequestMapping({ "/wxuser.htm" })
+	@RequestMapping({ "/wxuser" })
 	public String getWxUserInfo(HttpServletRequest req,
 			HttpServletResponse res, String code) {
 		try {

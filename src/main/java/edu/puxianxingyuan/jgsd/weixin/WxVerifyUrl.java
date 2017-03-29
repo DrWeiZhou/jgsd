@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WxVerifyUrl {
 
-	@RequestMapping({ "/verifyURL.htm" })
+	@RequestMapping({ "/verifyURL" })
 	void getUserInfo(String signature, String timestamp, String nonce, String echostr, HttpServletResponse res) {
 		try {
 			String token = "goodluck";
@@ -24,7 +24,7 @@ public class WxVerifyUrl {
 			System.out.println("nonce:"+nonce);
 			
 			WXBizMsgCrypt wxcpt = new WXBizMsgCrypt("goodluck",
-					"5BrGdTZG3FAnqHZpPbqmVL4YAG2pDG8qIfEUpm12klF", "wxc31939c82d472403");
+					"mSNUY7qtKcVFivBuuputZTPWLxCCk2jZ0epcjAvFd94", "wx944bc6ad0adfae1f");
 			System.out.println("wxcpt is ok!");
 			
 			String[] array = new String[] { token, timestamp, nonce };
