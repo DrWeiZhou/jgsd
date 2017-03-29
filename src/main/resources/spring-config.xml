@@ -36,7 +36,7 @@
 		<!-- 配置数据库连接驱动 -->
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<!-- 配置数据库连接地址 -->
-		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/rpm_fb?characterEncoding=UTF-8"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/jgsd?characterEncoding=UTF-8"></property>
 		<!-- 配置数据库连接用户名 -->
 		<property name="user" value="root"></property>
 		<!-- 配置数据库连接密码 -->
