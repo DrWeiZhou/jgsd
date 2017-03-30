@@ -20,23 +20,23 @@
 	<!-- <context:property-placeholder location="classpath:db-config.properties" /> -->
 	
     <!-- 指定所要扫描的注解所在位置 -->
-    <context:component-scan base-package="org.rpm"></context:component-scan>
+    <context:component-scan base-package="edu.puxianxingyuan.jgsd"></context:component-scan>
 	
 	<!-- 开启注解 替代下面注视的两行 -->
 	<mvc:annotation-driven/>
 	
-    <!-- 静态资源访问屏蔽拦截器 -->
+    <!-- 静态资源访问屏蔽拦截器
     <mvc:resources location="/js/" mapping="/js/**"/>
     <mvc:resources location="/css/" mapping="/css/**"/>
     
-    <mvc:resources mapping="/*.txt" location="/" cache-period="31556926"/>
-   	
+    <mvc:resources mapping="/*.txt" location="/" cache-period="31556926"/>-->
+
    	<!-- 配置C3P0数据连接池 -->
    	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<!-- 配置数据库连接驱动 -->
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<!-- 配置数据库连接地址 -->
-		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/jgsd?characterEncoding=UTF-8"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://mysql:3306/jgsd?characterEncoding=UTF-8"></property>
 		<!-- 配置数据库连接用户名 -->
 		<property name="user" value="root"></property>
 		<!-- 配置数据库连接密码 -->
@@ -63,7 +63,7 @@
 		<!-- 自动扫描注解方式配置的hibernate类文件 -->
 		<property name="packagesToScan">
 			<list>
-				<value>org.rpm.**.vo.</value>
+				<value>edu.puxianxingyuan.jgsd.domain</value>
 			</list>
 		</property>
 	</bean>
@@ -86,7 +86,7 @@
 	<!-- AOP配置的元素 -->
 	<aop:config>
 		<!-- 配置一个切入点 -->
-		<aop:pointcut id="myPointcut" expression="execution(* org.rpm..service.impl.*.*(..) )" />
+		<aop:pointcut id="myPointcut" expression="execution(* edu.puxianxingyuan..service.impl.*.*(..) )" />
 		<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
 	</aop:config>
