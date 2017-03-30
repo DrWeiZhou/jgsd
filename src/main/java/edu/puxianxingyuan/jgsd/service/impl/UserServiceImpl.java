@@ -8,6 +8,7 @@ import edu.puxianxingyuan.jgsd.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by 周炜 on 2017/3/30.
@@ -20,5 +21,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public BaseDao getBaseDao() {
         return this.userDao;
+    }
+
+    @Override
+    public User isValidUser(User user) {
+        User rst = null;
+        if(user.getUserName() != null && user.getPassword() != null){
+            List<User> userList = userDao.findByHql("from User u where u.userName = ?0 and u.password = ?1", user.getUserName(), user.getPassword());
+            if(userList != null && userList.size() == 1)
+                rst = userList.get(0);
+        }
+        return rst;
     }
 }

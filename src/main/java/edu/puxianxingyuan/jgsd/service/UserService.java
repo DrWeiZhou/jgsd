@@ -7,4 +7,5 @@ import edu.puxianxingyuan.jgsd.domain.User;
  * Created by 周炜 on 2017/3/30.
  */
 public interface UserService extends BaseService<User> {
+    User isValidUser(User user);
 }

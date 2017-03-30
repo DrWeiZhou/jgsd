@@ -18,11 +18,20 @@ public class User {
     private String userName;
     private String password;
 
+    private String realName;
+
     private Integer recordType;
 
     private Integer dailyJgsdXZ;
     private Integer dailyJgsdBZM;
 
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 
     public Integer getUserId() {
         return userId;

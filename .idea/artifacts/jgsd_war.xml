@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jgsd:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="jgsd.war">
+      <element id="artifact" artifact-name="jgsd:war exploded" />
+    </root>
+  </artifact>
+</component>

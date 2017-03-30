@@ -12,6 +12,9 @@
      -->
     <%@include file="topFile.tag" %>
     <script>
+        $(function () {
+                $("table .dingke").hide();
+        })
         function changeRecordType(type) {
             if (type == 1) {
                 $("table .dingke").show();
@@ -44,7 +47,7 @@
                     用户名：
                 </td>
                 <td>
-                    <input name="user.userName" type="text" width="10" id="userName" placeholder="请输入用户名"> </br>
+                    <input name="user.userName" type="text" width="10" id="userName" placeholder="用于登录的用户名"> </br>
                 </td>
             </tr>
             <tr>
@@ -65,6 +68,14 @@
                            id="repassword" placeholder="请再次输入密码"></br>
                 </td>
             </tr>
+            <tr>
+                <td width="30%">
+                    真名：
+                </td>
+                <td>
+                    <input name="user.realName" type="text" width="10" id="realName" placeholder="用于显示统计的真名"> </br>
+                </td>
+            </tr>
             <%--                <tr>
                                 <td>共修类型</td>
                                 <td>
@@ -76,8 +87,8 @@
             <tr>
                 <td>记录类型</td>
                 <td>
-                    <input name="user.recordType" type="radio" value="1" onclick="changeRecordType(1)" checked />定课
-                    <input name="user.recordType" type="radio" onclick="changeRecordType(2)" value="2"/>非定课
+                    <input name="user.recordType" type="radio" value="1" onclick="changeRecordType(1)" />定课
+                    <input name="user.recordType" type="radio" onclick="changeRecordType(2)" value="2" checked />非定课
                 </td>
             </tr>
             <tr class="dingke">
@@ -99,7 +110,7 @@
             <tr>
                 <td></td>
                 <td align="right">
-                    <input name="" type="submit" value="报名"></br>
+                    <input name="" type="submit" value="报名参加"></br>
                 </td>
             </tr>
         </table>
