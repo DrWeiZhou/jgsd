@@ -20,10 +20,12 @@ public class Record {
     @Temporal(TemporalType.DATE)
     private Date theDate = DateUtil.getTheDate(DateUtil.changeLocale(new Date())); //代表是哪一天的修行记录
 
-    @Column(nullable=false,columnDefinition="INT default 0")
-    private Integer dailyJgsdXZ = 0;
-    @Column(nullable=false,columnDefinition="INT default 0")
-    private Integer dailyJgsdBZM = 0;
+    @ManyToOne
+    @Column(name="workId",columnDefinition = "id")
+    private Work workType;  //功课类型
+
+    @Column(nullable = false, columnDefinition = "INT default 0")
+    private Integer workNum = 0;          //某项功课修行数量
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "userId", referencedColumnName = "userId")
@@ -61,19 +63,19 @@ public class Record {
         this.theDate = theDate;
     }
 
-    public Integer getDailyJgsdXZ() {
-        return dailyJgsdXZ;
+    public Work getWorkType() {
+        return workType;
     }
 
-    public void setDailyJgsdXZ(Integer dailyJgsdXZ) {
-        this.dailyJgsdXZ = dailyJgsdXZ;
+    public void setWorkType(Work workType) {
+        this.workType = workType;
     }
 
-    public Integer getDailyJgsdBZM() {
-        return dailyJgsdBZM;
+    public Integer getWorkNum() {
+        return workNum;
     }
 
-    public void setDailyJgsdBZM(Integer dailyJgsdBZM) {
-        this.dailyJgsdBZM = dailyJgsdBZM;
+    public void setWorkNum(Integer workNum) {
+        this.workNum = workNum;
     }
 }

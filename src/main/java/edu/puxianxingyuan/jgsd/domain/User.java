@@ -16,17 +16,27 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer userId;
 
-    private String userName;
-    private String password;
+    private String wxOpenId; //微信openid，微信登录使用
+    private String wxNickname; //微信昵称
+    private String userName; //用户名，非微信登录使用
+    private String password; //密码，非微信登录使用
 
-    private String realName;
+    private String realName; //用于显示的真名
 
-    private Integer recordType;
+    private String email;
+    private String telephone;
+    private String qq;
+    private String weixinName;
 
-    @Column(nullable=false,columnDefinition="INT default 0")
-    private Integer dailyJgsdXZ = 0;
-    @Column(nullable=false,columnDefinition="INT default 0")
-    private Integer dailyJgsdBZM = 0;
+
+    // 用户的性别（1是男性，2是女性，0是未知）
+    private int sex;
+    // 用户所在国家
+    private String country;
+    // 用户所在省份
+    private String province;
+    // 用户所在城市
+    private String city;
 
     @OneToMany(targetEntity = Record.class, mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -72,27 +82,83 @@ public class User {
         this.password = password;
     }
 
-    public Integer getRecordType() {
-        return recordType;
+    public String getWxOpenId() {
+        return wxOpenId;
     }
 
-    public void setRecordType(Integer recordType) {
-        this.recordType = recordType;
+    public void setWxOpenId(String wxOpenId) {
+        this.wxOpenId = wxOpenId;
     }
 
-    public Integer getDailyJgsdXZ() {
-        return dailyJgsdXZ;
+    public String getWxNickname() {
+        return wxNickname;
     }
 
-    public void setDailyJgsdXZ(Integer dailyJgsdXZ) {
-        this.dailyJgsdXZ = dailyJgsdXZ;
+    public void setWxNickname(String wxNickname) {
+        this.wxNickname = wxNickname;
     }
 
-    public Integer getDailyJgsdBZM() {
-        return dailyJgsdBZM;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDailyJgsdBZM(Integer dailyJgsdBZM) {
-        this.dailyJgsdBZM = dailyJgsdBZM;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWeixinName() {
+        return weixinName;
+    }
+
+    public void setWeixinName(String weixinName) {
+        this.weixinName = weixinName;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
