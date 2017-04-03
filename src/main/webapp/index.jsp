@@ -21,12 +21,18 @@
         <td><a href="<%=basePath%>user/reg">报名</a></td>
     </tr>
     <tr>
-        <td><a href="<%=basePath%>record/showAddRecord">记录功课</a></td>
+        <td><a href="<%=basePath%>record/showAddRecord">功课记录上报</a></td>
     </tr>
     <tr>
         <td><a href="<%=basePath%>user/showLogin">信息管理</a></td>
     </tr>
     </table>
+</div>
+<div align="left">
+    说明：<br/>
+    1. 请先通过"报名"进行账户注册并填写基本信息。<br/>
+    2. 报名后可通过"功课记录上报"上报自己的功课记录。<br/>
+    3. 报名后可以通过"信息管理"查看自己所有的功课记录及他人的功课记录。<br/>
 </div>
 
 </body>

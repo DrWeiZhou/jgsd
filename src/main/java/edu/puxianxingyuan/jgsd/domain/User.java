@@ -1,5 +1,8 @@
 package edu.puxianxingyuan.jgsd.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -26,6 +29,7 @@ public class User {
     private Integer dailyJgsdBZM = 0;
 
     @OneToMany(targetEntity = Record.class, mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Record> jgsdRecords;
 
     public Set<Record> getJgsdRecords() {

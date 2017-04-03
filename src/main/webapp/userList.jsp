@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="topFile.tag" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -11,30 +12,23 @@
     <title>普贤行愿共修</title>
     <!-- <link href="resources/style/system/front/wap/css/style.css" rel="stylesheet" type="text/css">
      -->
-    <%@include file="topFile.tag" %>
-    <script>
 
-     </script>
 </head>
 <body>
 <div align="center">
-        <c:if test="${!empty theDayRecords[0]}">
-        <h2 id="hh">${theDayRecords[0].theDate}功课记录</h2>
+        <h2 id="hh">共修成员列表</h2>
         <table border="1">
             <tr>
+                <td>序号</td>
                 <td>姓名</td>
-                <td>百字明</td>
-                <td>心咒</td>
             </tr>
-            <c:forEach items="${theDayRecords}" var="record" >
+            <c:forEach items="${users}" var="user" varStatus="status" >
                 <tr>
-                    <td>${record.user.realName}</td>
-                    <td>${record.dailyJgsdBZM}</td>
-                    <td>${record.dailyJgsdXZ}</td>
+                    <td>${status.count}</td>
+                    <td>${user.realName}</td>
                 </tr>
             </c:forEach>
         </table>
-        </c:if>
     <a href="<%=basePath%>home">返回</a>
 </div>
 

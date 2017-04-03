@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="topFile.tag" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
     <title>共修主页</title>
@@ -17,7 +18,7 @@
 </head>
 <body>
 <div align="center">
-    进度表
+    ${today}进度表(4月-6月还剩${remainDays}天)
     <table border="1">
         <tr>
             <td></td>
@@ -31,19 +32,21 @@
         </tr>
         <tr>
             <td>已完成</td>
-            <td></td>
-            <td></td>
+            <td>${totalBZM}</td>
+            <td>${totalXZ}</td>
         </tr>
         <tr>
             <td>进度</td>
-            <td></td>
-            <td></td>
+            <td><fmt:formatNumber type="percent" value="${totalBZM/10000.0}" maxFractionDigits="4"/></td>
+            <td><fmt:formatNumber type="percent" value="${totalXZ/10000.0}" maxFractionDigits="4"/></td>
         </tr>
         <tr>
             <td colspan="3">
                 <a href="<%=basePath%>user/getModify">修改报名信息</a><br/>
+                <a href="<%=basePath%>record/showAddRecord">功课记录上报</a><br/>
                 <a href="<%=basePath%>record/getUserRecords">我的功课记录</a><br/>
                 <a href="<%=basePath%>record/getTheDayRecords">今日共修记录</a><br/>
+                <a href="<%=basePath%>user/findAllUsers">共修成员名单</a><br/>
                 <a href="<%=basePath%>">返回首页</a><br/>
                 <%--<a href="<%=basePath%>user/delete">退出共修</a><br/>--%>
             </td>

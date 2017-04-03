@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>普贤行愿共修</title>
-    <meta http-equiv="refresh" content="0.5;url=<%=basePath%>user/getLogin">
+    <meta http-equiv="refresh" content="0.5;url=<%=basePath%>user/showLogin">
     <meta name="viewport" content="width=device-width,inital-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">

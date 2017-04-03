@@ -109,4 +109,21 @@ public class DateUtil {
         System.out.println("---------下次预计生成的实际系统时间为："+changeToSystem(c.getTime()));
         return changeToSystem(c.getTime());
     }
+
+    public static Integer getRemainDays(Date date) {
+        Integer rst = -1;
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(DateUtil.changeLocale(new Date()));
+        c.set(Calendar.YEAR, 2017);
+        c.set(Calendar.MONTH, 5);//6月
+        c.set(Calendar.DAY_OF_MONTH, 31);
+
+        c.set(Calendar.HOUR, 23);
+        c.set(Calendar.MINUTE, 59);
+        c.set(Calendar.SECOND, 59);
+
+
+        return (int)((c.getTimeInMillis()-date.getTime())/(1000*60*60*24));
+    }
 }
