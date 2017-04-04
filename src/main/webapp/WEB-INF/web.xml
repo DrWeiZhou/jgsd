@@ -42,4 +42,8 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <listener>
+        <listener-class>edu.puxianxingyuan.jgsd.util.listener.TimerInitListener</listener-class>
+    </listener>
 </web-app>

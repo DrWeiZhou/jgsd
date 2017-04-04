@@ -1,9 +1,7 @@
 package edu.puxianxingyuan.jgsd.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by 周炜 on 2017/3/30.
@@ -22,8 +20,21 @@ public class User {
 
     private Integer recordType;
 
-    private Integer dailyJgsdXZ;
-    private Integer dailyJgsdBZM;
+    @Column(nullable=false,columnDefinition="INT default 0")
+    private Integer dailyJgsdXZ = 0;
+    @Column(nullable=false,columnDefinition="INT default 0")
+    private Integer dailyJgsdBZM = 0;
+
+    @OneToMany(targetEntity = Record.class, mappedBy = "user")
+    private Set<Record> jgsdRecords;
+
+    public Set<Record> getJgsdRecords() {
+        return jgsdRecords;
+    }
+
+    public void setJgsdRecords(Set<Record> jgsdRecords) {
+        this.jgsdRecords = jgsdRecords;
+    }
 
     public String getRealName() {
         return realName;

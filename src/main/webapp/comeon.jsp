@@ -10,13 +10,12 @@
 <html>
 <head>
     <title>普贤行愿共修</title>
-    <meta http-equiv="refresh" content="0.5;url=<%=basePath%>user/getLogin">
     <meta name="viewport" content="width=device-width,inital-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
 </head>
 <body>
-    不好意思，出错了！请重新登录！
+    您已经成功退出报名，但自己要继续加油喔！
 </body>
 </html>

@@ -8,4 +8,6 @@ import edu.puxianxingyuan.jgsd.domain.User;
  */
 public interface UserService extends BaseService<User> {
     User isValidUser(User user);
+
+    boolean isSameUserName(User user);
 }

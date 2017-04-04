@@ -33,4 +33,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         }
         return rst;
     }
+
+    @Override
+    public boolean isSameUserName(User user) {
+        boolean rst = false;
+        List<User> userList = userDao.findByHql("from User u where u.userName = ?0 ", user.getUserName());
+        if(userList != null && userList.size() > 0)
+            rst = true;
+        return rst;
+    }
 }

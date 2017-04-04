@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -7,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
-    <title>普贤行愿共修</title>
+    <title>金刚萨埵共修</title>
     <!-- <link href="resources/style/system/front/wap/css/style.css" rel="stylesheet" type="text/css">
      -->
     <%@include file="topFile.tag" %>
@@ -24,6 +25,21 @@
                 $("table .dingke").hide();
             }
         }
+        function validateAndSubmit(){
+            var validate = false;
+            if($("#password").val() == $("#repassword").val()){
+                validate =  true;
+            }
+            else{
+                alert("两次输入的密码不一致!");
+                validate =  false;
+            }
+            if(validate){
+                document.getElementById("theForm").submit();
+            }
+
+        }
+
         function validate(){
             if($("#password").val() == $("#repassword").val()){
                 return true;
@@ -34,12 +50,19 @@
             }
         }
 
+        function changeUserInfo(){
+            if(validate()){
+                $("#theForm").attr("action","<%=basePath%>user/modify").submit();
+            }
+        }
+
     </script>
 </head>
 <body>
 <div align="center">
     <form action="<%=basePath%>user/add"
-          method="post" name="theForm" id="theForm" novalidate="novalidate" onsubmit="validate()">
+          method="post" name="theForm" id="theForm" novalidate="novalidate" >
+        <input type="hidden" name="user.userId" value="${user.userId}">
         <h2 id="hh">欢迎参加普贤行愿研修会金刚萨埵共修</h2>
         <table>
             <tr>
@@ -47,7 +70,13 @@
                     用户名：
                 </td>
                 <td>
-                    <input name="user.userName" type="text" width="10" id="userName" placeholder="用于登录的用户名"> </br>
+                    <c:if test="${type == 'modify'}">
+                        ${sessionScope.user.userName}
+                        <input name="user.userName" value="${user.userName}" type="hidden" width="6" > </br>
+                    </c:if>
+                    <c:if test="${type != 'modify'}">
+                        <input name="user.userName" value="${user.userName}" type="text" width="6" id="userName" placeholder="用于登录的用户名"> </br>
+                    </c:if>
                 </td>
             </tr>
             <tr>
@@ -73,7 +102,7 @@
                     真名：
                 </td>
                 <td>
-                    <input name="user.realName" type="text" width="10" id="realName" placeholder="用于显示统计的真名"> </br>
+                    <input name="user.realName" value="${user.realName}" type="text" width="10" id="realName" placeholder="用于显示统计的真名"> </br>
                 </td>
             </tr>
             <%--                <tr>
@@ -96,7 +125,7 @@
                     心咒
                 </td>
                 <td>
-                    <input name="user.dailyJgsdXZ" type="text" placeholder="选择定课并输入数目">
+                    <input name="user.dailyJgsdXZ" value="${user.dailyJgsdXZ}" type="text" placeholder="定课时输入纯整数,,没有填0">
                 </td>
             </tr>
             <tr class="dingke">
@@ -104,13 +133,18 @@
                     百字明
                 </td>
                 <td>
-                    <input name="user.dailyJgsdBZM" type="text" placeholder="选择定课并输入数目">
+                    <input name="user.dailyJgsdBZM" value="${user.dailyJgsdBZM}" type="text" placeholder="定课时输入纯整数,,没有填0">
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td align="right">
-                    <input name="" type="submit" value="报名参加"></br>
+                    <c:if test="${type == 'modify'}">
+                        <input name="" type="button" value="修改报名信息" onclick="changeUserInfo()">
+                    </c:if>
+                    <c:if test="${type != 'modify'}">
+                        <input name="" type="button" value="报名参加" onclick="validateAndSubmit()"></br>
+                    </c:if>
                 </td>
             </tr>
         </table>

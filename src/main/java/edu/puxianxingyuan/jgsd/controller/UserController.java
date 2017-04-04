@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.Serializable;
 
 @Controller
 @Scope("prototype")
@@ -33,10 +34,17 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/getLogin")
+	@RequestMapping("/showLogin")
 	ModelAndView  showLogin(){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/login");
+		return modelAndView;
+	}
+	@RequestMapping("/getModify")
+	ModelAndView  showModify(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/register");
+		modelAndView.getModel().put("type","modify");
 		return modelAndView;
 	}
 
@@ -62,11 +70,55 @@ public class UserController {
 
 
     @RequestMapping("/add")
-	ModelAndView addUser(@ModelAttribute User user){
-        userService.save(user);
+	ModelAndView addUser(@ModelAttribute User user, HttpSession session){
+		if(user.getDailyJgsdBZM() == null) user.setDailyJgsdBZM(0);
+		if(user.getDailyJgsdXZ() == null) user.setDailyJgsdXZ(0);
 
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/success");
+		if(user.getUserName() == null || user.getUserName().trim().equals("")){
+			modelAndView.setViewName("/errorReg");
+		}else{
+			boolean exist = userService.isSameUserName(user);
+			if(exist){
+				modelAndView.setViewName("/errorReg");
+			}else{
+
+				Serializable id = userService.save(user);
+
+				User dbUser = userService.getById(id);
+				if (dbUser != null) {
+					session.setAttribute("user", dbUser);
+				}
+				modelAndView.setViewName("/successReg");
+			}
+		}
+
 		return modelAndView;
 	}
+	@RequestMapping("/modify")
+	ModelAndView modifyUser(@ModelAttribute User user, HttpSession session){
+        userService.updateByDTO(user);
+
+		User dbUser = userService.getById(user.getUserId());
+		if(dbUser != null){
+			session.setAttribute("user",dbUser);
+		}
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/successModify");
+		return modelAndView;
+	}
+
+	@RequestMapping("/delete")
+	ModelAndView deleteUser( HttpSession session){
+		User user = (User)session.getAttribute("user");
+
+		userService.deleteById(user.getUserId());
+		session.removeAttribute("user");
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/comeon");
+		return modelAndView;
+	}
+
 }

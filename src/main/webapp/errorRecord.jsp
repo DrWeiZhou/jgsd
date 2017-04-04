@@ -10,13 +10,13 @@
 <html>
 <head>
     <title>普贤行愿共修</title>
-    <meta http-equiv="refresh" content="0.5;url=<%=basePath%>user/getLogin">
+    <meta http-equiv="refresh" content="0.5;url=<%=basePath%>record/showAddRecord">
     <meta name="viewport" content="width=device-width,inital-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
 </head>
 <body>
-    不好意思，出错了！请重新登录！
+    用户名或者密码错误！请重新输入！
 </body>
 </html>

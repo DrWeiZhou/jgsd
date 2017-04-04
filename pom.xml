@@ -158,13 +158,6 @@
 			<version>1.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.jeewx</groupId>
-			<artifactId>jeewx-api</artifactId>
-			<version>1.1-SNAPSHOT</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/jeewx-api-1.1-SNAPSHOT.jar</systemPath>
-		</dependency>
 	</dependencies>
 	<build>
 		<defaultGoal>install</defaultGoal>
