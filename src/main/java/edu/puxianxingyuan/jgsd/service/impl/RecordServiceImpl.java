@@ -68,7 +68,7 @@ public class RecordServiceImpl extends BaseServiceImpl<Record> implements Record
     @Override
     public List<Record> getTheDayRecords(Date date) {
         List<Record> rst = new ArrayList<Record>();
-        rst = recordDao.findByHql("from Record r where r.theDate = ?0", DateUtil.getTheDate(DateUtil.changeLocale(date)));
+        rst = recordDao.findByHql("from Record r where r.theDate = ?0", DateUtil.getYesterDate(DateUtil.changeLocale(date)));
         return rst;
     }
 
