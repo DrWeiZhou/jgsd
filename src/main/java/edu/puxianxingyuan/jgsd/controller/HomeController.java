@@ -1,6 +1,5 @@
 package edu.puxianxingyuan.jgsd.controller;
 
-import edu.puxianxingyuan.jgsd.domain.Record;
 import edu.puxianxingyuan.jgsd.domain.User;
 import edu.puxianxingyuan.jgsd.service.RecordService;
 import edu.puxianxingyuan.jgsd.util.DateUtil;
@@ -13,7 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 @Controller
 @Scope("prototype")
@@ -26,16 +25,15 @@ public class HomeController {
 //		System.out.println("home is here!");
 		ModelAndView modelAndView = new ModelAndView();
 		User user = (User)session.getAttribute("user");
-		List<Record> jgsdRecords = recordService.getUserRecords(user);
 		if(user != null) {
-			Integer totalBZM = 0;
-			Integer totalXZ = 0;
-			for(Record r : jgsdRecords){
-				totalBZM += r.getDailyJgsdBZM();
-				totalXZ += r.getDailyJgsdXZ();
+			Map<String,Integer> userTotalRecords = recordService.getUserTotalRecords(user);
+			if(userTotalRecords != null){
+				Integer totalBZM = userTotalRecords.get("totalBZM");
+				Integer totalXZ = userTotalRecords.get("totalXZ");
+				modelAndView.getModel().put("totalBZM",totalBZM);
+				modelAndView.getModel().put("totalXZ",totalXZ);
 			}
-			modelAndView.getModel().put("totalBZM",totalBZM);
-			modelAndView.getModel().put("totalXZ",totalXZ);
+
 			modelAndView.getModel().put("today", new SimpleDateFormat("yyyy年MM月dd日").format(DateUtil.changeLocale(new Date())));
 			modelAndView.getModel().put("remainDays",DateUtil.getRemainDays(new Date()));
 			modelAndView.setViewName("homePage");

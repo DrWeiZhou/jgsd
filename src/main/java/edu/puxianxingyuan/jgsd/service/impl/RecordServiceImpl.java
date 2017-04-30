@@ -13,9 +13,7 @@ import edu.puxianxingyuan.jgsd.util.DateUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by 周炜 on 2017/3/30.
@@ -63,6 +61,24 @@ public class RecordServiceImpl extends BaseServiceImpl<Record> implements Record
         List<Record> rst = new ArrayList<Record>();
         rst = recordDao.findByHql("from Record r where r.user = ?0", user);
         return rst;
+    }
+
+    @Override
+    public Map<String, Integer> getUserTotalRecords(User user) {
+        Map<String,Integer> totalRecords = null;
+        List<Record> records = recordDao.findByHql("from Record r where r.user = ?0", user);
+        if(records != null && records.size() > 0){
+            Integer totalBZM = 0;
+            Integer totalXZ = 0;
+            for(Record r : records){
+                totalBZM += r.getDailyJgsdBZM();
+                totalXZ += r.getDailyJgsdXZ();
+            }
+            totalRecords = new HashMap<String,Integer>();
+            totalRecords.put("totalBZM",totalBZM);
+            totalRecords.put("totalXZ",totalXZ);
+        }
+        return totalRecords;
     }
 
     @Override
