@@ -77,8 +77,65 @@ public class RecordServiceImpl extends BaseServiceImpl<Record> implements Record
             totalRecords = new HashMap<String,Integer>();
             totalRecords.put("totalBZM",totalBZM);
             totalRecords.put("totalXZ",totalXZ);
+        }else{//未有修行记录，则相关数据为0
+            totalRecords = new HashMap<String,Integer>();
+            totalRecords.put("totalBZM",0);
+            totalRecords.put("totalXZ",0);
         }
         return totalRecords;
+    }
+
+    @Override
+    public List<Map> getAllUserTotalRecords() {
+        List<Map> rst = null;
+        List<User> allUsers = userDao.findAll();
+        if(allUsers != null && allUsers.size() > 0){
+            for(User user : allUsers){
+                Map<String,Integer> userRecords = this.getUserTotalRecords(user);
+
+                if(rst == null){//第一个用户Map
+                    rst = new LinkedList<Map>();
+                    Map userMap = new HashMap();
+                    userMap.put("user",user);
+
+                    userMap.put("totalBZM", userRecords.get("totalBZM"));
+                    userMap.put("totalXZ", userRecords.get("totalXZ"));
+
+                    rst.add(userMap);
+                }else{//非第一个用户Map
+                    Map userMap = new HashMap();
+                    userMap.put("user",user);
+                    try {
+                        userMap.put("totalBZM", userRecords.get("totalBZM"));
+                    }catch(Exception e){
+                        System.out.println(userRecords);
+                        System.out.println("user:"+user.getRealName());
+                    }
+                    userMap.put("totalXZ", userRecords.get("totalXZ"));
+
+                    Integer totalBZM = userRecords.get("totalBZM");
+                    Integer totalXZ = userRecords.get("totalXZ");
+                    //插入排序
+                    boolean insertFlag = false;
+                    ListIterator<Map> it = rst.listIterator();
+                    while (it.hasNext()){
+                        Map<String,Integer> oneUserMap = it.next();
+                        Integer curTotalBZM = oneUserMap.get("totalBZM");
+                        Integer curTotalXZ = oneUserMap.get("totalXZ");
+                        if(totalBZM > curTotalBZM || (totalBZM == curTotalBZM && totalXZ > curTotalBZM)){//先以百字明为序排列
+//                            it.add(userMap);
+                            rst.add(it.previousIndex(),userMap);
+                            insertFlag = true;
+                            break;
+                        }
+                    }
+                    if(insertFlag == false){
+                        ((LinkedList<Map>)rst).addLast(userMap);
+                    }
+                }//非第一个用户
+            }
+        }
+        return rst;
     }
 
     @Override

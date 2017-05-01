@@ -20,6 +20,8 @@ public interface RecordService extends BaseService<Record>{
 
     Map<String,Integer> getUserTotalRecords(User user);
 
+    List<Map> getAllUserTotalRecords();
+
     List<Record> getTheDayRecords(Date date);
 
     void generateTheDayRecords();

@@ -46,6 +46,7 @@
                 <a href="<%=basePath%>record/showAddRecord">功课记录上报</a><br/>
                 <a href="<%=basePath%>record/getUserRecords">我的功课记录</a><br/>
                 <a href="<%=basePath%>record/getTheDayRecords">今日共修记录</a><br/>
+                <a href="<%=basePath%>record/getAllUserTotalRecords">共修统计排名</a><br/>
                 <a href="<%=basePath%>user/findAllUsers">共修成员名单</a><br/>
                 <a href="<%=basePath%>">返回首页</a><br/>
                 <%--<a href="<%=basePath%>user/delete">退出共修</a><br/>--%>

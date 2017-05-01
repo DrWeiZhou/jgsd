@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 周炜 on 2017/3/30.
@@ -96,5 +97,21 @@ public class RecordController {
 
         return modelAndView;
     }
+
+    @RequestMapping("/getAllUserTotalRecords")
+    ModelAndView getAllUserTotalRecords(HttpSession session, HttpServletRequest req) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Map> allUserTotalRecords = recordService.getAllUserTotalRecords();
+        modelAndView.getModel().put("allUserTotalRecords",allUserTotalRecords);
+        modelAndView.setViewName("/allUserTotalRecords");
+
+        List<Record> theDayRecords = recordService.getTheDayRecords(new Date());
+        modelAndView.getModel().put("theDayRecords",theDayRecords);
+
+        return modelAndView;
+    }
+
+
 
 }
