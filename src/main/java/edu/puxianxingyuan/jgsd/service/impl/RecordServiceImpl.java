@@ -122,7 +122,7 @@ public class RecordServiceImpl extends BaseServiceImpl<Record> implements Record
                         Map<String,Integer> oneUserMap = it.next();
                         Integer curTotalBZM = oneUserMap.get("totalBZM");
                         Integer curTotalXZ = oneUserMap.get("totalXZ");
-                        if(totalBZM > curTotalBZM || (totalBZM == curTotalBZM && totalXZ > curTotalBZM)){//先以百字明为序排列
+                        if((totalBZM > curTotalBZM) || (totalBZM.equals(curTotalBZM) && totalXZ > curTotalXZ)){//先以百字明为序排列
 //                            it.add(userMap);
                             rst.add(it.previousIndex(),userMap);
                             insertFlag = true;
